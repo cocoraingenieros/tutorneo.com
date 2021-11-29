@@ -23,6 +23,7 @@ router.post('login', async (req, res)=>{
             res.status(400).json(msg.fieldsRequired)
         }
         //let token = await authService.login(req.body)
+        
         const token = await authService.login(req.body)
         //res.status(token.code).json({"token":token})
         res.status(token.code).json(token)
