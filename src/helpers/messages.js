@@ -21,4 +21,4 @@ let msg = {
     }
 }
 
-module.exports = msg
+module.export = msg
