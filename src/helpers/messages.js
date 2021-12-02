@@ -14,7 +14,7 @@ let msg = {
         error: true,
         msg: 'Please enter all fields'
     },
-    authFailed:{
+    authFailed: {
         code: 401,
         error: true,
         msg: 'Auth Failed'
@@ -22,4 +22,4 @@ let msg = {
 }
 
 
-module.exports = msg
+module.export = msg
