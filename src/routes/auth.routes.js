@@ -17,7 +17,7 @@ router.post('/register', async (req, res)=>{
 })  
 
 //router.post('/login', async (req, res)=>{
-router.post('login', async (req, res)=>{
+router.post('/login', async (req, res)=>{
     try {
         const {email, password} = req.body
         if(!email || !password){
@@ -27,7 +27,8 @@ router.post('login', async (req, res)=>{
         
         const token = await authService.login(req.body)
         //res.status(token.code).json({"token":token})
-        res.status(token.code).json(token)
+        res.status(200).json({"token":token})
+        //res.status(token.code).json(token)
     } catch (error) {
         res.send(error)
         //res.status(500).json({'error':error})
