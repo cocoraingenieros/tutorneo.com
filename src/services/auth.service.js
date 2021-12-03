@@ -27,6 +27,7 @@ const authService = {
         }
     },
     register: async function(userData){
+        console.log("hola")
         try {
             let hash = await bcrypt.hash(userData.password, 10).then(res => res)
             userData.password = hash
@@ -35,6 +36,7 @@ const authService = {
             return {
                 userData,
                 code: 200,
+                
                 token
             }
         } catch (error) {
