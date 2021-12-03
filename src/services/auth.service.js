@@ -9,8 +9,7 @@ const authService = {
             expiresIn: 60 * 60 * 24 * 365
         })
     },
-    //login: async function(data){
-    login: async (data)=>{
+    login: async function(data){
         try {
             const {email, password} = data
             let userExists = await User.findOne({email:email}, 'name email password').exec()
@@ -27,14 +26,12 @@ const authService = {
             return error            
         }
     },
-    //register: async function(userData){
-        register: async (userData)=>{
+    register: async function(userData){
         try {
             let hash = await bcrypt.hash(userData.password, 10).then(res => res)
             userData.password = hash
-            await userData.save()
+            //await userData.save()
             let token = await this.signToken(userData._id)
-
             return {
                 userData,
                 code: 200,
@@ -45,5 +42,4 @@ const authService = {
         }
     }
 }
-
 module.exports = authService
