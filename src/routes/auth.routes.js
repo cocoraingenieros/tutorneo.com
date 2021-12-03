@@ -8,15 +8,16 @@ router.post('/register', async (req, res)=>{
     try {
         const user = new User(req.body)
         let token = await authService.register(user)
-        res.status(token.code).json(token);
+        res.status(200).json({"token":token})
+        //res.status(token.code).json(token);
     } catch (error) {
-        res.status(500).json({error})
-        //res.send(error) 
+        
+        res.send(error) 
     }
 })  
 
-router.post('/login', async (req, res)=>{
-//router.post('login', async (req, res)=>{
+//router.post('/login', async (req, res)=>{
+router.post('login', async (req, res)=>{
     try {
         const {email, password} = req.body
         if(!email || !password){
