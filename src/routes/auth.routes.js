@@ -10,8 +10,9 @@ router.post('/register', async (req, res)=>{
         let token = await authService.register(user)
         //res.status(200).json({"token":token})
         res.status(token.code).json(token);
-    } catch (error) {        
-        res.send(error) 
+    } catch (error) {  
+        res.status(500).json({error})      
+        //res.send(error) 
     }
 }) 
 
@@ -21,8 +22,7 @@ router.post('/login', async (req, res)=>{
         if(!email || !password){
             res.status(400).json(msg.fieldsRequired)
         }
-        let token = await authService.login(req.body)
-        
+        //let token = await authService.login(req.body)        
         const token = await authService.login(req.body)
         //res.status(token.code).json({"token":token})
         //res.status(200).json({"token":token})
