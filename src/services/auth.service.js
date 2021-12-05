@@ -4,13 +4,12 @@ const bcrypt = require('bcrypt')
 const msg = require('../helpers/messages')
 
 const authService = {
-    signToken: async (id)=>{
-        return jwt.sign({ _id }, process.env.JWT_SECRET, {
+    signToken: async function(_id){
+        return jwt.sign({ _id }, 'BackendFinApp', {
             expiresIn: 60 * 60 * 24 * 365
         })
     },
-    login: async(data)=>{
-    //login: async function(data){
+    login: async function(data){
         try {
             const {email, password} = data
             let userExists = await User.findOne({email:email}, 'name email password').exec()
@@ -27,16 +26,15 @@ const authService = {
             return error            
         }
     },
-    register: async (userData)=>{
-    //register: async function(userData){
+    register: async function(userData){
         try {
             let hash = await bcrypt.hash(userData.password, 10).then(res => res)
             userData.password = hash
             await userData.save()
             let token = await this.signToken(userData._id)
             return {
-                //userData,
-                code: 200,                
+                userData,
+                code: 200,
                 token
             }
         } catch (error) {
