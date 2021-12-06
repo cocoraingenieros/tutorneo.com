@@ -2,7 +2,7 @@ const express = require('express')
 const morgan = require('morgan')
 const mongoose = require('mongoose')
 const cors = require('cors')
-const path = require('path')
+//const path = require('path')
 require('dotenv').config()
 const app = express()
 const authRoutes = require('./routes/auth.routes')
@@ -20,7 +20,7 @@ app.use(cors())
 app.use(express.urlencoded({extended:false}))
 
 //rutas
-app.use('/auth', authRoutes)
+app.use('/auth', authRoutes) 
 
 //inicio del servidor
 app.listen(app.get('port'), ()=>{
