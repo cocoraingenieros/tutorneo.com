@@ -10,7 +10,8 @@ router.post('/register', async (req, res)=>{
         //let token = await authService.register(user)
         const token = await authService.register(user)
         //res.status(200).json({"token":token})
-        res.status(token.code).json({"token":token});
+        //res.status(token.code).json({"token":token});
+        res.send(token)
     } catch (error) {  
         //res.status(500).json({error})      
         res.send(error) 
